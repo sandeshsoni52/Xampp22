@@ -145,6 +145,42 @@
         }
     }
 
+    // Handle SC button
+    if (isset($_POST['sc'])) {
+        // query1/3
+        $sql_cat1 = "CREATE TABLE allocatedSC AS 
+            SELECT * FROM unallocatedcommon";
+        if ($conn->query($sql_cat1) === TRUE) {
+            echo "New SC allocated table created successfully!";
+        } else {
+            echo "Error: " . $conn->error;
+        }
+
+        // query 2/3
+        $sql_fish4 = "DELETE FROM allocatedSC
+            WHERE category <> 'SC'";
+        if ($conn->query($sql_fish4) === TRUE) {
+            echo " all SC table , successfully!";
+        } else {
+            echo "Error: " . $conn->error;
+        }
+
+        // query 3/3
+        // SQL query to delete all rows except the top 1
+        $sql = "DELETE FROM allocatedSC 
+                    WHERE srno NOT IN (
+                        SELECT srno FROM (
+                            SELECT srno FROM allocatedSC
+                            ORDER BY srno 
+                            LIMIT 1
+                        ) AS temp
+                    )";
+        if ($conn->query($sql) === TRUE) {
+            echo "Records deleted successfully and proper SC_allocated!";
+        } else {
+            echo "Error: " . $conn->error;
+        }
+    }
 
 
     // Close connection
