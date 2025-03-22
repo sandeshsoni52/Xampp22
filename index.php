@@ -8,8 +8,8 @@
 <body>
 
     <form method="post">
-        <button type="submit" name="insert">Insert New Record</button>
-        <button type="submit" name="delete">Delete All Except Top 2</button>
+        <button type="submit" name="insert">new table of ST allocated incomplete</button>
+        <button type="submit" name="delete">Delete All Except Top 3</button>
     </form>
 
     <?php
@@ -29,8 +29,8 @@
 
     // Handle insert request
     if (isset($_POST['insert'])) {
-        // Example: Insert a new record with dummy data
-        $sql_cat1 = "CREATE TABLE tablecat2 AS 
+        // query1/2
+        $sql_cat1 = "CREATE TABLE allocatedST AS 
         SELECT * FROM unallocatedcommon";
 
         if ($conn->query($sql_cat1) === TRUE) {
@@ -39,25 +39,25 @@
             echo "Error: " . $conn->error;
         }
 
-        // Example: Insert a new record with dummy data
-        $sql_fish4 = "CREATE TABLE tablefish4 AS 
-        SELECT * FROM unallocatedcommon";
+        // query 2/2
+        $sql_fish4 = "DELETE FROM allocatedST
+        WHERE category <> 'ST'";
 
         if ($conn->query($sql_fish4) === TRUE) {
-            echo "New ST allocated table created successfully!";
+            echo " New ST allocated table created successfully!";
         } else {
             echo "Error: " . $conn->error;
         }
     }
 
     if (isset($_POST['delete'])) {
-        // SQL query to delete all rows except the top 2
-        $sql = "DELETE FROM allocatedNTC 
+        // SQL query to delete all rows except the top 3
+        $sql = "DELETE FROM allocatedST 
                 WHERE srno NOT IN (
                     SELECT srno FROM (
-                        SELECT srno FROM allocatedNTC 
+                        SELECT srno FROM allocatedST
                         ORDER BY srno 
-                        LIMIT 2
+                        LIMIT 3
                     ) AS temp
                 )";
 
