@@ -6,16 +6,16 @@
 <body>
 
     <form method="post">
-        <button type="submit" name="delete">Delete All Except Top 4</button>
+        <button type="submit" name="delete">Delete All Except Top 2</button>
     </form>
 
     <?php
     if (isset($_POST['delete'])) {
         // Database connection details
-        $host = "your_host"; // e.g., "localhost"
-        $user = "your_username"; 
-        $password = "your_password";
-        $database = "your_database";
+        $host = "localhost"; // e.g., "localhost"
+        $user = "root"; 
+        $password = "";
+        $database = "test_db";
 
         // Create connection
         $conn = new mysqli($host, $user, $password, $database);
@@ -25,13 +25,13 @@
             die("Connection failed: " . $conn->connect_error);
         }
 
-        // SQL query to delete all rows except the top 4
-        $sql = "DELETE FROM allocatedOBC 
-                WHERE id NOT IN (
-                    SELECT id FROM (
-                        SELECT id FROM allocatedOBC 
-                        ORDER BY id 
-                        LIMIT 4
+        // SQL query to delete all rows except the top 2
+        $sql = "DELETE FROM allocatedNTC 
+                WHERE srno NOT IN (
+                    SELECT srno FROM (
+                        SELECT srno FROM allocatedNTC 
+                        ORDER BY srno 
+                        LIMIT 2
                     ) AS temp
                 )";
 
