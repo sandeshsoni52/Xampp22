@@ -27,6 +27,19 @@
         die("Connection failed: " . $conn->connect_error);
     }
 
+    // Handle insert request
+    if (isset($_POST['insert'])) {
+        // Example: Insert a new record with dummy data
+        $sql = "CREATE TABLE allocatedST AS 
+        SELECT * FROM unallocatedcommon";
+
+        if ($conn->query($sql) === TRUE) {
+            echo "New ST allocated table created successfully!";
+        } else {
+            echo "Error: " . $conn->error;
+        }
+    }
+
     if (isset($_POST['delete'])) {
         // SQL query to delete all rows except the top 2
         $sql = "DELETE FROM allocatedNTC 
@@ -45,17 +58,7 @@
         }
     }
 
-    // Handle insert request
-    if (isset($_POST['insert'])) {
-        // Example: Insert a new record with dummy data
-        $sql = "CREATE TABLE table1405 ( col_1 INT)";
 
-        if ($conn->query($sql) === TRUE) {
-            echo "New table created successfully!";
-        } else {
-            echo "Error: " . $conn->error;
-        }
-    }
     // Close connection
     $conn->close();
 
