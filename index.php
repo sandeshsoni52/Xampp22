@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Delete Records</title>
 </head>
+
 <body>
 
     <form method="post">
+        <button type="submit" name="insert">Insert New Record</button>
         <button type="submit" name="delete">Delete All Except Top 2</button>
     </form>
 
@@ -13,7 +16,7 @@
     if (isset($_POST['delete'])) {
         // Database connection details
         $host = "localhost"; // e.g., "localhost"
-        $user = "root"; 
+        $user = "root";
         $password = "";
         $database = "test_db";
 
@@ -47,4 +50,5 @@
     ?>
 
 </body>
+
 </html>
