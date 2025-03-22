@@ -30,10 +30,20 @@
     // Handle insert request
     if (isset($_POST['insert'])) {
         // Example: Insert a new record with dummy data
-        $sql = "CREATE TABLE allocatedST AS 
+        $sql_cat1 = "CREATE TABLE tablecat2 AS 
         SELECT * FROM unallocatedcommon";
 
-        if ($conn->query($sql) === TRUE) {
+        if ($conn->query($sql_cat1) === TRUE) {
+            echo "New ST allocated table created successfully!";
+        } else {
+            echo "Error: " . $conn->error;
+        }
+
+        // Example: Insert a new record with dummy data
+        $sql_fish4 = "CREATE TABLE tablefish4 AS 
+        SELECT * FROM unallocatedcommon";
+
+        if ($conn->query($sql_fish4) === TRUE) {
             echo "New ST allocated table created successfully!";
         } else {
             echo "Error: " . $conn->error;
