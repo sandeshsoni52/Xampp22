@@ -10,7 +10,9 @@
     <form method="post">
         <button type="submit" name="st1">new table of ST allocated incomplete</button>
         <button type="submit" name="st2">Final ST allocated</button>
-        <button type="submit" name="obc1">new table of obc allocated incomplete</button>
+        <button type="submit" name="obc1">new table of obc allocated</button>
+        <button type="submit" name="ntc">new table of NT-c allocated </button>
+        <button type="submit" name="sc">new table of SC allocated </button>
     </form>
 
     <?php
@@ -69,7 +71,7 @@
         }
     }
 
-    // Handle ST two buttons
+    // Handle OBC button
     if (isset($_POST['obc1'])) {
         // query1/3
         $sql_cat1 = "CREATE TABLE allocatedOBC AS 
@@ -105,6 +107,45 @@
             echo "Error: " . $conn->error;
         }
     }
+
+    // Handle NTC button
+    if (isset($_POST['ntc'])) {
+        // query1/3
+        $sql_cat1 = "CREATE TABLE allocatedNTC AS 
+        SELECT * FROM unallocatedcommon";
+        if ($conn->query($sql_cat1) === TRUE) {
+            echo "New NTC allocated table created successfully!";
+        } else {
+            echo "Error: " . $conn->error;
+        }
+
+        // query 2/3
+        $sql_fish4 = "DELETE FROM allocatedNTC
+        WHERE category <> 'NTC'";
+        if ($conn->query($sql_fish4) === TRUE) {
+            echo " all NTC table , successfully!";
+        } else {
+            echo "Error: " . $conn->error;
+        }
+
+        // query 3/3
+        // SQL query to delete all rows except the top 1
+        $sql = "DELETE FROM allocatedNTC 
+                WHERE srno NOT IN (
+                    SELECT srno FROM (
+                        SELECT srno FROM allocatedNTC
+                        ORDER BY srno 
+                        LIMIT 1
+                    ) AS temp
+                )";
+        if ($conn->query($sql) === TRUE) {
+            echo "Records deleted successfully and proper NT C_allocated!";
+        } else {
+            echo "Error: " . $conn->error;
+        }
+    }
+
+
 
     // Close connection
     $conn->close();
