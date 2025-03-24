@@ -1,0 +1,10 @@
+CREATE TABLE allocatedopen AS 
+SELECT * FROM meritlist LIMIT 12;
+
+
+
+CREATE TABLE unallocatedcommon AS 
+SELECT * FROM meritlist;
+
+DELETE FROM unallocatedcommon 
+WHERE srno IN (SELECT srno FROM allocatedopen); 
