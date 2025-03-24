@@ -1,0 +1,65 @@
+CREATE TABLE MeritList (
+    SrNo INT PRIMARY KEY,
+    Rollno VARCHAR(20) NOT NULL,
+    cname VARCHAR(100) NOT NULL,
+    Category VARCHAR(20) NOT NULL,
+    Percentile FLOAT NOT NULL,
+    MathP FLOAT NOT NULL,
+    PhysicsP FLOAT NOT NULL,
+    ChemistryP FLOAT NOT NULL
+);
+
+
+INSERT INTO MeritList (SrNo, Rollno, cname, Category, Percentile, MathP, PhysicsP, ChemistryP) VALUES (1, 'EN24133045', 'SAKORKAR SHARANNYA', 'Open', 100.0, 100.0, 100.0, 100.0);
+INSERT INTO MeritList (SrNo, Rollno, cname, Category, Percentile, MathP, PhysicsP, ChemistryP) VALUES (2, 'EN24234277', 'DIWAN PRERANA SUNIL', 'Open', 100.0, 100.0, 100.0, 100.0);
+INSERT INTO MeritList (SrNo, Rollno, cname, Category, Percentile, MathP, PhysicsP, ChemistryP) VALUES (3, 'EN24182475', 'BYADGI PUSHKAR VINAY', 'SC', 100.0, 100.0, 100.0, 99.9919172);
+INSERT INTO MeritList (SrNo, Rollno, cname, Category, Percentile, MathP, PhysicsP, ChemistryP) VALUES (4, 'EN24148455', 'MOKSH NIMESH PATEL', 'SC', 100.0, 100.0, 100.0, 99.9738835);
+INSERT INTO MeritList (SrNo, Rollno, cname, Category, Percentile, MathP, PhysicsP, ChemistryP) VALUES (5, 'EN24153437', 'SAGAR ANKITA ASHOK', 'SC', 100.0, 100.0, 99.970854, 99.941708);
+INSERT INTO MeritList (SrNo, Rollno, cname, Category, Percentile, MathP, PhysicsP, ChemistryP) VALUES (6, 'EN24109582', 'GUPTA HARSHVARDHAN NAVENDU', 'SC', 100.0, 100.0, 99.9686352, 100.0);
+INSERT INTO MeritList (SrNo, Rollno, cname, Category, Percentile, MathP, PhysicsP, ChemistryP) VALUES (7, 'EN24180444', 'SAMRUDDHI SUDHAKAR OMBASE', 'NTC', 100.0, 100.0, 99.9286434, 99.9832102);
+INSERT INTO MeritList (SrNo, Rollno, cname, Category, Percentile, MathP, PhysicsP, ChemistryP) VALUES (8, 'EN24232199', 'SHAH VANSHIKA SACHINKUMAR', 'SC', 100.0, 99.9958429, 99.9958429, 99.9709);
+INSERT INTO MeritList (SrNo, Rollno, cname, Category, Percentile, MathP, PhysicsP, ChemistryP) VALUES (9, 'EN24188835', 'PRANAV ARORA', 'Open', 100.0, 99.9956364, 99.93891, 99.9738186);
+INSERT INTO MeritList (SrNo, Rollno, cname, Category, Percentile, MathP, PhysicsP, ChemistryP) VALUES (10, 'EN24138003', 'BHURE ARYAN DATTATRAY', 'OBC', 100.0, 99.9869093, 99.93891, 100.0);
+INSERT INTO MeritList (SrNo, Rollno, cname, Category, Percentile, MathP, PhysicsP, ChemistryP) VALUES (11, 'EN24122197', 'SONI MADHAV PAWANKUMAR', 'ST', 100.0, 99.9750665, 99.9916888, 99.9916888);
+INSERT INTO MeritList (SrNo, Rollno, cname, Category, Percentile, MathP, PhysicsP, ChemistryP) VALUES (12, 'EN24187372', 'GAWAND PRANAV TANAJI', 'NTC', 100.0, 99.9168848, 100.0, 100.0);
+INSERT INTO MeritList (SrNo, Rollno, cname, Category, Percentile, MathP, PhysicsP, ChemistryP) VALUES (13, 'EN24142634', 'AKSHAT TIKARIA', 'ST', 99.9959995, 99.9959995, 99.9759971, 99.9839981);
+INSERT INTO MeritList (SrNo, Rollno, cname, Category, Percentile, MathP, PhysicsP, ChemistryP) VALUES (14, 'EN24248558', 'MAHALLE OM VILAS', 'OBC', 99.9958858, 99.9670863, 100.0, 99.9958858);
+INSERT INTO MeritList (SrNo, Rollno, cname, Category, Percentile, MathP, PhysicsP, ChemistryP) VALUES (15, 'EN24155293', 'DETHE VED CHANDRASHEKHAR', 'OBC', 99.9958442, 99.9958442, 99.9044176, 99.9667539);
+INSERT INTO MeritList (SrNo, Rollno, cname, Category, Percentile, MathP, PhysicsP, ChemistryP) VALUES (16, 'EN24180600', 'CHINMAY DATTAPRASAD GHATE', 'ST', 99.9958442, 99.983377, 99.9750655, 99.9667539);
+INSERT INTO MeritList (SrNo, Rollno, cname, Category, Percentile, MathP, PhysicsP, ChemistryP) VALUES (17, 'EN24284644', 'MAHESHWARY ANANT PRASHANT', 'ST', 99.9958429, 99.9750572, 99.9958429, 99.9875286);
+INSERT INTO MeritList (SrNo, Rollno, cname, Category, Percentile, MathP, PhysicsP, ChemistryP) VALUES (18, 'EN24247858', 'KALE UDAY GANESH', 'ST', 99.9958363, 99.9958363, 99.970854, 99.941708);
+INSERT INTO MeritList (SrNo, Rollno, cname, Category, Percentile, MathP, PhysicsP, ChemistryP) VALUES (19, 'EN24128986', 'PUJARI VEDANT ASHOK', 'NTC', 99.9958264, 100.0, 99.9582638, 99.8622705);
+INSERT INTO MeritList (SrNo, Rollno, cname, Category, Percentile, MathP, PhysicsP, ChemistryP) VALUES (20, 'EN24239161', 'CHOUHAN SUYANSH ARVINDKUMAR', 'ST', 99.9958026, 99.9916051, 99.9916051, 99.9580255);
+INSERT INTO MeritList (SrNo, Rollno, cname, Category, Percentile, MathP, PhysicsP, ChemistryP) VALUES (21, 'EN24213808', 'SHIMPI MANDAR SANDIP', 'OBC', 99.9957742, 100.0, 99.9915483, 99.9197093);
+INSERT INTO MeritList (SrNo, Rollno, cname, Category, Percentile, MathP, PhysicsP, ChemistryP) VALUES (22, 'EN24140600', 'GAIKWAD YUVRAJ YASHWANT', 'ST', 99.9956473, 99.9912945, 99.9956473, 99.8868286);
+INSERT INTO MeritList (SrNo, Rollno, cname, Category, Percentile, MathP, PhysicsP, ChemistryP) VALUES (23, 'EN24216328', 'ANIRUDH ARVIND MAHAPATRA', 'ST', 99.991999, 99.9959995, 99.9759971, 99.6559587);
+INSERT INTO MeritList (SrNo, Rollno, cname, Category, Percentile, MathP, PhysicsP, ChemistryP) VALUES (24, 'EN24143166', 'SAWANT ASHANI SANJAY', 'Open', 99.9917716, 99.9958858, 99.9465153, 99.9588579);
+INSERT INTO MeritList (SrNo, Rollno, cname, Category, Percentile, MathP, PhysicsP, ChemistryP) VALUES (25, 'EN24140840', 'RANDIVE RIDDHESH KALIDAS', 'OBC', 99.9916857, 99.9750572, 99.9501143, 100.0);
+INSERT INTO MeritList (SrNo, Rollno, cname, Category, Percentile, MathP, PhysicsP, ChemistryP) VALUES (26, 'EN24180556', 'PRAJAPATI JENIL NILESH', 'Open', 99.9916051, 99.9664204, 100.0, 99.8362995);
+INSERT INTO MeritList (SrNo, Rollno, cname, Category, Percentile, MathP, PhysicsP, ChemistryP) VALUES (27, 'EN24136441', 'SHREYASH CHANDRA', 'Open', 99.9915161, 99.9406125, 99.9872741, 100.0);
+INSERT INTO MeritList (SrNo, Rollno, cname, Category, Percentile, MathP, PhysicsP, ChemistryP) VALUES (28, 'EN24171047', 'MULWANI KRISH NARESH', 'Open', 99.9912945, 99.9912945, 99.8998868, 99.9738835);
+INSERT INTO MeritList (SrNo, Rollno, cname, Category, Percentile, MathP, PhysicsP, ChemistryP) VALUES (29, 'EN24174889', 'GANDHEWAR SWAYAM PARAG', 'Open', 99.9910386, 99.9865579, 99.9686352, 100.0);
+INSERT INTO MeritList (SrNo, Rollno, cname, Category, Percentile, MathP, PhysicsP, ChemistryP) VALUES (30, 'EN24121814', 'UTKARSH GUPTA', 'Open', 99.990883, 99.9863245, 99.9954415, 99.9954415);
+INSERT INTO MeritList (SrNo, Rollno, cname, Category, Percentile, MathP, PhysicsP, ChemistryP) VALUES (31, 'EN24182021', 'KATDARE KAIVALYA GIRISH', 'Open', 99.9879986, 99.9639957, 99.9279914, 100.0);
+INSERT INTO MeritList (SrNo, Rollno, cname, Category, Percentile, MathP, PhysicsP, ChemistryP) VALUES (32, 'EN24140393', 'DALAL JINANSH PUNITKUMAR', 'Open', 99.9876979, 99.9917986, 99.9671943, 99.5694251);
+INSERT INTO MeritList (SrNo, Rollno, cname, Category, Percentile, MathP, PhysicsP, ChemistryP) VALUES (33, 'EN24146673', 'BHATTAD PRANAV HEMANT', 'Open', 99.9876979, 99.9794964, 100.0, 99.5694251);
+INSERT INTO MeritList (SrNo, Rollno, cname, Category, Percentile, MathP, PhysicsP, ChemistryP) VALUES (34, 'EN24138347', 'MORE PRAJWAL PRAMOD', 'OBC', 99.9875332, 99.9127327, 100.0, 99.9958444);
+INSERT INTO MeritList (SrNo, Rollno, cname, Category, Percentile, MathP, PhysicsP, ChemistryP) VALUES (35, 'EN24217471', 'WADKILE TUSHAR RAOSAHEB', 'Open', 99.9875286, 99.9750572, 99.9085429, 100.0);
+INSERT INTO MeritList (SrNo, Rollno, cname, Category, Percentile, MathP, PhysicsP, ChemistryP) VALUES (36, 'EN24114837', 'JAMDAR JIBRAN JAVED', 'Open', 99.9875088, 99.9958363, 99.8875796, 99.9791814);
+INSERT INTO MeritList (SrNo, Rollno, cname, Category, Percentile, MathP, PhysicsP, ChemistryP) VALUES (37, 'EN24138682', 'HAJARNIS INDRANEEL AMOL', 'Open', 99.9874791, 99.9958264, 99.9582638, 99.8622705);
+INSERT INTO MeritList (SrNo, Rollno, cname, Category, Percentile, MathP, PhysicsP, ChemistryP) VALUES (38, 'EN24137219', 'JADHAV MANTHAN BHARAT', 'NTC', 99.9873225, 100.0, 99.9788709, 99.9197093);
+INSERT INTO MeritList (SrNo, Rollno, cname, Category, Percentile, MathP, PhysicsP, ChemistryP) VALUES (39, 'EN24270587', 'BADHE VAISHNAVI AMOL', 'Open', 99.9873225, 99.9915483, 99.9450642, 99.9957742);
+INSERT INTO MeritList (SrNo, Rollno, cname, Category, Percentile, MathP, PhysicsP, ChemistryP) VALUES (40, 'EN24240356', 'DESHMUKH YASH SUNIL', 'OBC', 99.9869418, 99.965178, 99.9695308, 99.9303561);
+INSERT INTO MeritList (SrNo, Rollno, cname, Category, Percentile, MathP, PhysicsP, ChemistryP) VALUES (41, 'EN24274745', 'AGARWAL SIDDHANT LALIT', 'Open', 99.9869093, 99.9738186, 100.0, 99.703277);
+INSERT INTO MeritList (SrNo, Rollno, cname, Category, Percentile, MathP, PhysicsP, ChemistryP) VALUES (42, 'EN24299270', 'NACHAN YASH DNYANDEV', 'NTC', 99.9865579, 99.9865579, 99.9955193, 99.9686352);
+INSERT INTO MeritList (SrNo, Rollno, cname, Category, Percentile, MathP, PhysicsP, ChemistryP) VALUES (43, 'EN24135545', 'SHINDE HARSHWARDHAN YUVARAJ', 'Open', 99.9863245, 100.0, 99.9225054, 99.9680904);
+INSERT INTO MeritList (SrNo, Rollno, cname, Category, Percentile, MathP, PhysicsP, ChemistryP) VALUES (44, 'EN24137438', 'SONAWANE PRACHI PRAMOD', 'OBC', 99.9863245, 99.9863245, 99.9589734, 99.9954415);
+INSERT INTO MeritList (SrNo, Rollno, cname, Category, Percentile, MathP, PhysicsP, ChemistryP) VALUES (45, 'EN24237781', 'ISHAAN SAMEER SARDESHMUKH', 'Open', 99.9838345, 99.9797931, 99.9919172, 99.9070482);
+INSERT INTO MeritList (SrNo, Rollno, cname, Category, Percentile, MathP, PhysicsP, ChemistryP) VALUES (46, 'EN24214884', 'KARAMBALKAR HARSH JITIN', 'Open', 99.9835432, 99.9753147, 99.9094874, 99.9300584);
+INSERT INTO MeritList (SrNo, Rollno, cname, Category, Percentile, MathP, PhysicsP, ChemistryP) VALUES (47, 'EN24102832', 'MOHIT VIVEK JAIN', 'Open', 99.9833777, 99.9916888, 99.9418218, 99.6550864);
+INSERT INTO MeritList (SrNo, Rollno, cname, Category, Percentile, MathP, PhysicsP, ChemistryP) VALUES (48, 'EN24199852', 'PASARE SARVESH DATTATRAY', 'Open', 99.9833777, 99.9750665, 99.9418218, 99.8919548);
+INSERT INTO MeritList (SrNo, Rollno, cname, Category, Percentile, MathP, PhysicsP, ChemistryP) VALUES (49, 'EN24180314', 'AHUJA KARAN SANJAY', 'Open', 99.9833777, 99.9750665, 99.8711769, 99.9459774);
+INSERT INTO MeritList (SrNo, Rollno, cname, Category, Percentile, MathP, PhysicsP, ChemistryP) VALUES (50, 'EN24301030', 'LABHSHETWAR SOHAM LAXMIKANT', 'Open', 99.9833777, 99.9376662, 99.9418218, 99.9916888);
+INSERT INTO MeritList (SrNo, Rollno, cname, Category, Percentile, MathP, PhysicsP, ChemistryP) VALUES (51, 'EN24141393', 'KOTHALKAR YASH ANKUR', 'Open', 99.983377, 99.983377, 99.9750655, 99.9293521);
+INSERT INTO MeritList (SrNo, Rollno, cname, Category, Percentile, MathP, PhysicsP, ChemistryP) VALUES (52, 'EN24115323', 'WAGHMARE JAYESH SANJAY', 'OBC', 99.983377, 99.9625982, 99.9542867, 99.9916885);
+INSERT INTO MeritList (SrNo, Rollno, cname, Category, Percentile, MathP, PhysicsP, ChemistryP) VALUES (53, 'EN24210161', 'PHARTADE DNYANESHWARI ANIL', 'OBC', 99.9830322, 99.9575804, 99.893951, 99.9830322);
