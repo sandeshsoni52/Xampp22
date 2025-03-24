@@ -63,17 +63,22 @@ function createAllocatedNTCTable($conn)
     }
 
     // query 3/3
+    // Fetch the digit value from the calculation table
+    $result = $conn->query("SELECT digit FROM calculation WHERE id=4");
+    $row = $result->fetch_assoc();
+    $limitValue = isset($row['digit']) ? (int)$row['digit'] : 0; // Ensure it's an integer
+
     // SQL query to delete all rows except the top 1
     $sql = "DELETE FROM allocatedNTC 
                 WHERE srno NOT IN (
                     SELECT srno FROM (
                         SELECT srno FROM allocatedNTC
                         ORDER BY srno 
-                        LIMIT 1
+                        LIMIT $limitValue
                     ) AS temp
                 )";
     if ($conn->query($sql) === TRUE) {
-        echo "Records deleted successfully and proper NT C_allocated!";
+        echo "1616Records deleted successfully and proper NT C_allocated!";
     } else {
         echo "Error: " . $conn->error;
     }
