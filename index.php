@@ -127,9 +127,9 @@ function createAllocatedSCTable($conn)
     AS SELECT * FROM unallocatedcommon";
 
     if ($conn->query($sqlone) === TRUE) {
-        return "1404New SC allocated table created successfully!";
+        echo "1436New SC allocated table created successfully!";
     } else {
-        return "Error: " . $conn->error;
+        echo "Error: " . $conn->error;
     }
 
     // query 2/3
@@ -161,49 +161,11 @@ function createAllocatedSCTable($conn)
 }
 
 // Handle form submission
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    if (isset($_POST['sc'])) {
-        createAllocatedSCTable($conn);
-    }
+
+if (isset($_POST['sc'])) {
+    createAllocatedSCTable($conn);
 }
 
-
-// // Handle SC button
-// if (isset($_POST['sc'])) {
-//     // query1/3
-//     $sql_cat1 = "CREATE TABLE allocatedSC AS 
-//             SELECT * FROM unallocatedcommon";
-//     if ($conn->query($sql_cat1) === TRUE) {
-//         echo "New SC allocated table created successfully!";
-//     } else {
-//         echo "Error: " . $conn->error;
-//     }
-
-//     // query 2/3
-//     $sql_fish4 = "DELETE FROM allocatedSC
-//             WHERE category <> 'SC'";
-//     if ($conn->query($sql_fish4) === TRUE) {
-//         echo " all SC table , successfully!";
-//     } else {
-//         echo "Error: " . $conn->error;
-//     }
-
-//     // query 3/3
-//     // SQL query to delete all rows except the top 1
-//     $sql = "DELETE FROM allocatedSC 
-//                     WHERE srno NOT IN (
-//                         SELECT srno FROM (
-//                             SELECT srno FROM allocatedSC
-//                             ORDER BY srno 
-//                             LIMIT 1
-//                         ) AS temp
-//                     )";
-//     if ($conn->query($sql) === TRUE) {
-//         echo "Records deleted successfully and proper SC_allocated!";
-//     } else {
-//         echo "Error: " . $conn->error;
-//     }
-// }
 
 
 // Close connection
@@ -225,7 +187,7 @@ $conn->close();
         <button type="submit" name="st2">1347Final ST allocated</button>
         <button type="submit" name="obc1">new table of obc allocated</button>
         <button type="submit" name="ntc">new table of NT-c allocated </button>
-        <button type="submit" name="sc">new table of SC allocated </button>
+        <button type="submit" name="sc">1435new table of SC allocated </button>
     </form>
 
 
