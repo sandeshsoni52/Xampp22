@@ -9,26 +9,15 @@
 
     <form method="post">
         <button type="submit" name="st1">new table of ST allocated incomplete</button>
-        <button type="submit" name="st2">Final ST allocated</button>
+        <button type="submit" name="st2">1347Final ST allocated</button>
         <button type="submit" name="obc1">new table of obc allocated</button>
         <button type="submit" name="ntc">new table of NT-c allocated </button>
         <button type="submit" name="sc">new table of SC allocated </button>
     </form>
 
     <?php
-    // Database connection details
-    $host = "localhost"; // e.g., "localhost"
-    $user = "root";
-    $password = "";
-    $database = "test_db";
-
-    // Create connection
-    $conn = new mysqli($host, $user, $password, $database);
-
-    // Check connection
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
+    // Include database connection
+    include 'db_connect.php';
 
     // Handle ST two buttons
     if (isset($_POST['st1'])) {
