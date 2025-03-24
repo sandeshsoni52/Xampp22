@@ -1,8 +1,6 @@
 <?php
-// Include database connection
 include 'db_connect.php';
-
-include 'functionsc.php'; // Include logic
+include 'functionsc.php';
 
 // Handle ST two buttons
 if (isset($_POST['st1'])) {
@@ -82,52 +80,14 @@ if (isset($_POST['obc1'])) {
     }
 }
 
-// Handle NTC button
-if (isset($_POST['ntc'])) {
-    // query1/3
-    $sql_cat1 = "CREATE TABLE allocatedNTC AS 
-        SELECT * FROM unallocatedcommon";
-    if ($conn->query($sql_cat1) === TRUE) {
-        echo "New NTC allocated table created successfully!";
-    } else {
-        echo "Error: " . $conn->error;
-    }
-
-    // query 2/3
-    $sql_fish4 = "DELETE FROM allocatedNTC
-        WHERE category <> 'NTC'";
-    if ($conn->query($sql_fish4) === TRUE) {
-        echo " all NTC table , successfully!";
-    } else {
-        echo "Error: " . $conn->error;
-    }
-
-    // query 3/3
-    // SQL query to delete all rows except the top 1
-    $sql = "DELETE FROM allocatedNTC 
-                WHERE srno NOT IN (
-                    SELECT srno FROM (
-                        SELECT srno FROM allocatedNTC
-                        ORDER BY srno 
-                        LIMIT 1
-                    ) AS temp
-                )";
-    if ($conn->query($sql) === TRUE) {
-        echo "Records deleted successfully and proper NT C_allocated!";
-    } else {
-        echo "Error: " . $conn->error;
-    }
-}
-
-
-
-// Handle form submission
-
+// call SC function
 if (isset($_POST['sc'])) {
     createAllocatedSCTable($conn);
 }
-
-
+// call NTC function
+if (isset($_POST['ntc'])) {
+    createAllocatedNTCTable($conn);
+}
 
 // Close connection
 $conn->close();
