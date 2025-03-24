@@ -63,9 +63,10 @@ function createAllocatedNTCTable($conn)
     }
 
     // query 3/3
-    $result = $conn->query("SELECT sixty FROM calculation1 WHERE category='sc'");
+    $ect='sixty';
+    $result = $conn->query("SELECT $ect FROM calculation1 WHERE category='sc'");
     $row = $result->fetch_assoc();
-    $ntc_value = isset($row['sixty']) ? (int)$row['sixty'] : 0; // Ensure it's an integer
+    $ntc_value = isset($row[$ect]) ? (int)$row[$ect] : 0; // Ensure it's an integer
 
     // SQL query to delete all rows except the top 1
     $sql = "DELETE FROM allocatedNTC 
@@ -77,7 +78,7 @@ function createAllocatedNTCTable($conn)
                     ) AS temp
                 )";
     if ($conn->query($sql) === TRUE) {
-        echo "1634Records deleted successfully and proper NT C_allocated!";
+        echo "1643Records deleted successfully and proper NT C_allocated!";
     } else {
         echo "Error: " . $conn->error;
     }
