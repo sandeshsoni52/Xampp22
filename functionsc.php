@@ -63,7 +63,7 @@ function createAllocatedNTCTable($conn)
     }
 
     // query 3/3
-    $ect='sixty';
+    $ect = 'sixty';
     $result = $conn->query("SELECT $ect FROM calculation1 WHERE category='sc'");
     $row = $result->fetch_assoc();
     $ntc_value = isset($row[$ect]) ? (int)$row[$ect] : 0; // Ensure it's an integer
@@ -79,6 +79,51 @@ function createAllocatedNTCTable($conn)
                 )";
     if ($conn->query($sql) === TRUE) {
         echo "1643Records deleted successfully and proper NT C_allocated!";
+    } else {
+        echo "Error: " . $conn->error;
+    }
+}
+
+// Handle OBC button
+function createAllocatedOBCTable($conn)
+{
+// if (isset($_POST['obc1'])) {
+    // query1/3
+    $sqlone = "CREATE TABLE allocatedOBC AS 
+        SELECT * FROM unallocatedcommon";
+    if ($conn->query($sqlone) === TRUE) {
+        echo "1123New obc allocated table created successfully!";
+    } else {
+        echo "Error: " . $conn->error;
+    }
+
+    // query 2/3
+    $sqltwo = "DELETE FROM allocatedOBC
+        WHERE category <> 'OBC'";
+    if ($conn->query($sqltwo) === TRUE) {
+        echo " all OBC table , successfully!";
+    } else {
+        echo "Error: " . $conn->error;
+    }
+
+    // query 3/3
+    $ect = 'sixty';
+    $result = $conn->query("SELECT $ect FROM calculation1 WHERE category='ntc'");
+    $row = $result->fetch_assoc();
+    $obc_value = isset($row[$ect]) ? (int)$row[$ect] : 0; // Ensure it's an integer
+
+
+    // SQL query to delete all rows except the top 4
+    $sqlthree = "DELETE FROM allocatedOBC 
+                WHERE srno NOT IN (
+                    SELECT srno FROM (
+                        SELECT srno FROM allocatedOBC
+                        ORDER BY srno 
+                        LIMIT $obc_value
+                    ) AS temp
+                )";
+    if ($conn->query($sqlthree) === TRUE) {
+        echo "Records deleted successfully and proper OBC_allocated!";
     } else {
         echo "Error: " . $conn->error;
     }
@@ -120,43 +165,6 @@ function createAllocatedNTCTable($conn)
 
 //     if ($conn->query($sql) === TRUE) {
 //         echo "Records deleted successfully!";
-//     } else {
-//         echo "Error: " . $conn->error;
-//     }
-// }
-
-// // Handle OBC button
-// if (isset($_POST['obc1'])) {
-//     // query1/3
-//     $sql_cat1 = "CREATE TABLE allocatedOBC AS 
-//         SELECT * FROM unallocatedcommon";
-//     if ($conn->query($sql_cat1) === TRUE) {
-//         echo "1350New obc allocated table created successfully!";
-//     } else {
-//         echo "Error: " . $conn->error;
-//     }
-
-//     // query 2/3
-//     $sql_fish4 = "DELETE FROM allocatedOBC
-//         WHERE category <> 'OBC'";
-//     if ($conn->query($sql_fish4) === TRUE) {
-//         echo " all OBC table , successfully!";
-//     } else {
-//         echo "Error: " . $conn->error;
-//     }
-
-//     // query 3/3
-//     // SQL query to delete all rows except the top 4
-//     $sql = "DELETE FROM allocatedOBC 
-//                 WHERE srno NOT IN (
-//                     SELECT srno FROM (
-//                         SELECT srno FROM allocatedOBC
-//                         ORDER BY srno 
-//                         LIMIT 4
-//                     ) AS temp
-//                 )";
-//     if ($conn->query($sql) === TRUE) {
-//         echo "Records deleted successfully and proper OBC_allocated!";
 //     } else {
 //         echo "Error: " . $conn->error;
 //     }
