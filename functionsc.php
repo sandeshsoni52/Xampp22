@@ -1,6 +1,20 @@
 <?php
 $ect = 'sixty';
 
+//allocated_open_category_seats
+function allocatedOpenTable($conn)
+{
+    //query 1
+    $sqlone = "CREATE TABLE allocatedopen AS 
+                SELECT * FROM meritlist LIMIT 12;";
+
+    if ($conn->query($sqlone) === TRUE) {
+        echo "open category , allocation";
+    } else {
+        echo "Error: " . $conn->error;
+    }
+}
+
 // Function to handle SC table creation
 function createAllocatedSCTable($conn)
 {

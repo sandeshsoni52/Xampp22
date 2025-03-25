@@ -3,6 +3,10 @@ include 'db_connect.php';
 include 'functionsc.php';
 
 // call SC function
+if (isset($_POST['allocatedopen'])) {
+    allocatedOpenTable($conn);
+}
+// call SC function
 if (isset($_POST['sc'])) {
     createAllocatedSCTable($conn);
 }
@@ -30,6 +34,7 @@ $conn->close();
 <body>
 
     <form method="post">
+        <button type="submit" name="allocatedopen">open allocated table okk</button>
         <!-- <button type="submit" name="st1">new table of ST allocated incomplete</button>
         <button type="submit" name="st2">1347Final ST allocated</button> -->
         <button type="submit" name="obc1">new table of obc allocated</button>
