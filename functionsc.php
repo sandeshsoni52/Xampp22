@@ -70,50 +70,42 @@ function allocatedOpenTable($conn)
     } else {
         echo "Error: " . $conn->error;
     }
+
+    // query1/3 ST
+    $sqlone = "CREATE TABLE allocatedST AS SELECT * FROM unallocatedcommon";
+    if ($conn->query($sqlone) === TRUE) {
+        echo "1504New ST allocated table created successfully!";
+    } else {
+        echo "Error: " . $conn->error;
+    }
+    // query 2/3
+    $sqltwo = "DELETE FROM allocatedST WHERE category <> 'ST'";
+    if ($conn->query($sqltwo) === TRUE) {
+        echo " New ST allocated table created successfully!";
+    } else {
+        echo "Error: " . $conn->error;
+    }
+    // query 3/3 ST
+    global $ect;
+    $result = $conn->query("SELECT $ect FROM calculation WHERE category='st'");
+    $row = $result->fetch_assoc();
+    $st_value = isset($row[$ect]) ? (int)$row[$ect] : 0;
+
+    $sql = "DELETE FROM allocatedST 
+                WHERE srno NOT IN (
+                    SELECT srno FROM (
+                        SELECT srno FROM allocatedST
+                        ORDER BY srno 
+                        LIMIT $st_value
+                    ) AS temp
+                )";
+
+    if ($conn->query($sql) === TRUE) {
+        echo "Records deleted successfully!";
+    } else {
+        echo "Error: " . $conn->error;
+    }
 }
-
-// // Function to handle SC table creation
-// function createAllocatedSCTable($conn)
-// {
-//     //query 1/3
-//     $sqlone = "CREATE TABLE allocatedSC 
-//     AS SELECT * FROM unallocatedcommon";
-
-//     if ($conn->query($sqlone) === TRUE) {
-//         echo "separate1448New SC allocated table created successfully!";
-//     } else {
-//         echo "Error: " . $conn->error;
-//     }
-//     // query 2/3
-//     $sqltwo = "DELETE FROM allocatedSC
-//             WHERE category <> 'SC'";
-
-//     if ($conn->query($sqltwo) === TRUE) {
-//         echo " all SC table , successfully!";
-//     } else {
-//         echo "Error: " . $conn->error;
-//     }
-//     // query 3/3
-//     global $ect;
-//     $result = $conn->query("SELECT $ect FROM calculation WHERE category='sc'");
-//     $row = $result->fetch_assoc();
-//     $sc_value = isset($row[$ect]) ? (int)$row[$ect] : 0;
-//     // SQL query to delete all rows except the top 1
-//     $sqlthree = "DELETE FROM allocatedSC 
-//                     WHERE srno NOT IN (
-//                         SELECT srno FROM (
-//                             SELECT srno FROM allocatedSC
-//                             ORDER BY srno 
-//                             LIMIT $sc_value
-//                         ) AS temp
-//                     )";
-//     //error handling
-//     if ($conn->query($sqlthree) === TRUE) {
-//         echo "Records deleted successfully and proper SC_allocated!";
-//     } else {
-//         echo "Error: " . $conn->error;
-//     }
-// }
 
 function createAllocatedNTCTable($conn)
 {
@@ -125,7 +117,6 @@ function createAllocatedNTCTable($conn)
     } else {
         echo "Error: " . $conn->error;
     }
-
     // query 2/3
     $sql_fish4 = "DELETE FROM allocatedNTC
         WHERE category <> 'NTC'";
@@ -134,13 +125,11 @@ function createAllocatedNTCTable($conn)
     } else {
         echo "Error: " . $conn->error;
     }
-
     // query 3/3
     global $ect;
     $result = $conn->query("SELECT $ect FROM calculation WHERE category='ntc'");
     $row = $result->fetch_assoc();
     $ntc_value = isset($row[$ect]) ? (int)$row[$ect] : 0; // Ensure it's an integer
-
     // SQL query to delete all rows except the top 1
     $sql = "DELETE FROM allocatedNTC 
                 WHERE srno NOT IN (
@@ -201,41 +190,10 @@ function createAllocatedOBCTable($conn)
 
 // // Handle ST two buttons
 // if (isset($_POST['st1'])) {
-//     // query1/2
-//     $sql_cat1 = "CREATE TABLE allocatedST AS 
-//         SELECT * FROM unallocatedcommon";
-
-//     if ($conn->query($sql_cat1) === TRUE) {
-//         echo "New ST allocated table created successfully!";
-//     } else {
-//         echo "Error: " . $conn->error;
-//     }
-
-//     // query 2/2
-//     $sql_fish4 = "DELETE FROM allocatedST
-//         WHERE category <> 'ST'";
-
-//     if ($conn->query($sql_fish4) === TRUE) {
-//         echo " New ST allocated table created successfully!";
-//     } else {
-//         echo "Error: " . $conn->error;
-//     }
+    
 // }
 
 // if (isset($_POST['st2'])) {
 //     // SQL query to delete all rows except the top 3
-//     $sql = "DELETE FROM allocatedST 
-//                 WHERE srno NOT IN (
-//                     SELECT srno FROM (
-//                         SELECT srno FROM allocatedST
-//                         ORDER BY srno 
-//                         LIMIT 3
-//                     ) AS temp
-//                 )";
-
-//     if ($conn->query($sql) === TRUE) {
-//         echo "Records deleted successfully!";
-//     } else {
-//         echo "Error: " . $conn->error;
-//     }
-// }
+    
+// // }
