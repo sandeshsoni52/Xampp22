@@ -83,35 +83,23 @@ function allocatedOpenTable($conn)
     $result = $conn->query("SELECT $ect FROM calculation WHERE category='st'");
     $row = $result->fetch_assoc();
     $st_value = isset($row[$ect]) ? (int)$row[$ect] : 0;
-
-    $sql = "DELETE FROM allocatedST 
-                WHERE srno NOT IN (
-                    SELECT srno FROM (
-                        SELECT srno FROM allocatedST
-                        ORDER BY srno 
-                        LIMIT $st_value
-                    ) AS temp
-                )";
-
+    $sql = "DELETE FROM allocatedST WHERE srno NOT IN (SELECT srno FROM (SELECT srno FROM allocatedST ORDER BY srno LIMIT $st_value) AS temp)";
     if ($conn->query($sql) === TRUE) {
         echo "Records deleted successfully!";
     } else {
         echo "Error: " . $conn->error;
     }
-}
 
-function createAllocatedNTCTable($conn)
-{
-    // query1/3
-    $sqlone = "CREATE TABLE allocatedNTC AS SELECT * FROM unallocatedcommon";
-    if ($conn->query($sqlone) === TRUE) {
-        echo "1540New NTC allocated table created successfully!";
+    // query1/3 NTC
+    $sql = "CREATE TABLE allocatedNTC AS SELECT * FROM unallocatedcommon";
+    if ($conn->query($sql) === TRUE) {
+        echo "1513New NTC allocated table created successfully!";
     } else {
         echo "Error: " . $conn->error;
     }
     // query 2/3
-    $sql_fish4 = "DELETE FROM allocatedNTC WHERE category <> 'NTC'";
-    if ($conn->query($sql_fish4) === TRUE) {
+    $sql = "DELETE FROM allocatedNTC WHERE category <> 'NTC'";
+    if ($conn->query($sql) === TRUE) {
         echo " all NTC table , successfully!";
     } else {
         echo "Error: " . $conn->error;
@@ -122,14 +110,7 @@ function createAllocatedNTCTable($conn)
     $row = $result->fetch_assoc();
     $ntc_value = isset($row[$ect]) ? (int)$row[$ect] : 0; // Ensure it's an integer
     // SQL query to delete all rows except the top 1
-    $sql = "DELETE FROM allocatedNTC 
-                WHERE srno NOT IN (
-                    SELECT srno FROM (
-                        SELECT srno FROM allocatedNTC
-                        ORDER BY srno 
-                        LIMIT $ntc_value
-                    ) AS temp
-                )";
+    $sql = "DELETE FROM allocatedNTC WHERE srno NOT IN (SELECT srno FROM (SELECT srno FROM allocatedNTC ORDER BY srno LIMIT $ntc_value) AS temp)";
     if ($conn->query($sql) === TRUE) {
         echo "1643Records deleted successfully and proper NT C_allocated!";
     } else {
