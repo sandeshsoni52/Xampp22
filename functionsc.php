@@ -26,7 +26,7 @@ function allocatedOpenTable($conn)
 
     //query 3
     $sqlone = "DELETE FROM unallocatedcommon 
-WHERE srno IN (SELECT srno FROM allocatedopen); ";
+        WHERE srno IN (SELECT srno FROM allocatedopen); ";
 
     if ($conn->query($sqlone) === TRUE) {
         echo "q3";
@@ -97,8 +97,8 @@ function createAllocatedNTCTable($conn)
     }
 
     // query 3/3
-    $ect = 'sixty';
-    $result = $conn->query("SELECT $ect FROM calculation1 WHERE category='sc'");
+    global $ect;
+    $result = $conn->query("SELECT $ect FROM calculation WHERE category='ntc'");
     $row = $result->fetch_assoc();
     $ntc_value = isset($row[$ect]) ? (int)$row[$ect] : 0; // Ensure it's an integer
 
