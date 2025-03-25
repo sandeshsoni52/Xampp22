@@ -1,5 +1,5 @@
 <?php
-// functionsc.php
+$ect = 'sixty';
 
 // Function to handle SC table creation
 function createAllocatedSCTable($conn)
@@ -87,12 +87,12 @@ function createAllocatedNTCTable($conn)
 // Handle OBC button
 function createAllocatedOBCTable($conn)
 {
-// if (isset($_POST['obc1'])) {
+    // if (isset($_POST['obc1'])) {
     // query1/3
     $sqlone = "CREATE TABLE allocatedOBC AS 
         SELECT * FROM unallocatedcommon";
     if ($conn->query($sqlone) === TRUE) {
-        echo "1123New obc allocated table created successfully!";
+        echo "1130New obc allocated table created successfully!";
     } else {
         echo "Error: " . $conn->error;
     }
@@ -107,8 +107,9 @@ function createAllocatedOBCTable($conn)
     }
 
     // query 3/3
-    $ect = 'sixty';
-    $result = $conn->query("SELECT $ect FROM calculation1 WHERE category='ntc'");
+    // $ect = 'thirty';
+    global $ect;
+    $result = $conn->query("SELECT $ect FROM calculation WHERE category='obc'");
     $row = $result->fetch_assoc();
     $obc_value = isset($row[$ect]) ? (int)$row[$ect] : 0; // Ensure it's an integer
 
