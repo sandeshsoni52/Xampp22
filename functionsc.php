@@ -1,13 +1,15 @@
 <?php
-$ect = 'sixty';
+$ect = 'twoforty';
 
 //allocated_open_category_seats
 function allocatedOpenTable($conn)
 {
     //query 1
-    $sqlone = "CREATE TABLE allocatedopen AS 
-                SELECT * FROM meritlist LIMIT 12;";
-
+    global $ect;
+    $result = $conn->query("SELECT $ect FROM calculation WHERE category='open'");
+    $row = $result->fetch_assoc();
+    $open_value = isset($row[$ect]) ? (int)$row[$ect] : 0;
+    $sqlone = "CREATE TABLE allocatedopen AS SELECT * FROM meritlist LIMIT $open_value;";
     if ($conn->query($sqlone) === TRUE) {
         echo "open category , allocation";
     } else {
