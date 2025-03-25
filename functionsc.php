@@ -13,7 +13,6 @@ function allocatedOpenTable($conn)
     } else {
         echo "Error: " . $conn->error;
     }
-
     //query 2
     $sqlone = "CREATE TABLE unallocatedcommon AS 
                 SELECT * FROM meritlist;";
@@ -23,7 +22,6 @@ function allocatedOpenTable($conn)
     } else {
         echo "Error: " . $conn->error;
     }
-
     //query 3
     $sqlone = "DELETE FROM unallocatedcommon 
         WHERE srno IN (SELECT srno FROM allocatedopen); ";
@@ -33,41 +31,39 @@ function allocatedOpenTable($conn)
     } else {
         echo "Error: " . $conn->error;
     }
-}
 
-// Function to handle SC table creation
-function createAllocatedSCTable($conn)
-{
-    //query 1/3
+    //query 1/3 SC
     $sqlone = "CREATE TABLE allocatedSC 
-    AS SELECT * FROM unallocatedcommon";
+        AS SELECT * FROM unallocatedcommon";
 
     if ($conn->query($sqlone) === TRUE) {
         echo "separate1448New SC allocated table created successfully!";
     } else {
         echo "Error: " . $conn->error;
     }
-
-    // query 2/3
+    // query 2/3 SC
     $sqltwo = "DELETE FROM allocatedSC
-            WHERE category <> 'SC'";
+                WHERE category <> 'SC'";
 
     if ($conn->query($sqltwo) === TRUE) {
         echo " all SC table , successfully!";
     } else {
         echo "Error: " . $conn->error;
     }
-
-    // query 3/3
+    // query 3/3 SC
+    global $ect;
+    $result = $conn->query("SELECT $ect FROM calculation WHERE category='sc'");
+    $row = $result->fetch_assoc();
+    $sc_value = isset($row[$ect]) ? (int)$row[$ect] : 0;
     // SQL query to delete all rows except the top 1
     $sqlthree = "DELETE FROM allocatedSC 
-                    WHERE srno NOT IN (
-                        SELECT srno FROM (
-                            SELECT srno FROM allocatedSC
-                            ORDER BY srno 
-                            LIMIT 1
-                        ) AS temp
-                    )";
+                        WHERE srno NOT IN (
+                            SELECT srno FROM (
+                                SELECT srno FROM allocatedSC
+                                ORDER BY srno 
+                                LIMIT $sc_value
+                            ) AS temp
+                        )";
     //error handling
     if ($conn->query($sqlthree) === TRUE) {
         echo "Records deleted successfully and proper SC_allocated!";
@@ -75,6 +71,49 @@ function createAllocatedSCTable($conn)
         echo "Error: " . $conn->error;
     }
 }
+
+// // Function to handle SC table creation
+// function createAllocatedSCTable($conn)
+// {
+//     //query 1/3
+//     $sqlone = "CREATE TABLE allocatedSC 
+//     AS SELECT * FROM unallocatedcommon";
+
+//     if ($conn->query($sqlone) === TRUE) {
+//         echo "separate1448New SC allocated table created successfully!";
+//     } else {
+//         echo "Error: " . $conn->error;
+//     }
+//     // query 2/3
+//     $sqltwo = "DELETE FROM allocatedSC
+//             WHERE category <> 'SC'";
+
+//     if ($conn->query($sqltwo) === TRUE) {
+//         echo " all SC table , successfully!";
+//     } else {
+//         echo "Error: " . $conn->error;
+//     }
+//     // query 3/3
+//     global $ect;
+//     $result = $conn->query("SELECT $ect FROM calculation WHERE category='sc'");
+//     $row = $result->fetch_assoc();
+//     $sc_value = isset($row[$ect]) ? (int)$row[$ect] : 0;
+//     // SQL query to delete all rows except the top 1
+//     $sqlthree = "DELETE FROM allocatedSC 
+//                     WHERE srno NOT IN (
+//                         SELECT srno FROM (
+//                             SELECT srno FROM allocatedSC
+//                             ORDER BY srno 
+//                             LIMIT $sc_value
+//                         ) AS temp
+//                     )";
+//     //error handling
+//     if ($conn->query($sqlthree) === TRUE) {
+//         echo "Records deleted successfully and proper SC_allocated!";
+//     } else {
+//         echo "Error: " . $conn->error;
+//     }
+// }
 
 function createAllocatedNTCTable($conn)
 {
@@ -144,8 +183,6 @@ function createAllocatedOBCTable($conn)
     $result = $conn->query("SELECT $ect FROM calculation WHERE category='obc'");
     $row = $result->fetch_assoc();
     $obc_value = isset($row[$ect]) ? (int)$row[$ect] : 0;
-
-
     // SQL query to delete all rows except the top 4
     $sqlthree = "DELETE FROM allocatedOBC 
                 WHERE srno NOT IN (
