@@ -56,14 +56,7 @@ function allocatedOpenTable($conn)
     $row = $result->fetch_assoc();
     $sc_value = isset($row[$ect]) ? (int)$row[$ect] : 0;
     // SQL query to delete all rows except the top 1
-    $sqlthree = "DELETE FROM allocatedSC 
-                        WHERE srno NOT IN (
-                            SELECT srno FROM (
-                                SELECT srno FROM allocatedSC
-                                ORDER BY srno 
-                                LIMIT $sc_value
-                            ) AS temp
-                        )";
+    $sqlthree = "DELETE FROM allocatedSC WHERE srno NOT IN (SELECT srno FROM (SELECT srno FROM allocatedSC ORDER BY srno LIMIT $sc_value) AS temp )";
     //error handling
     if ($conn->query($sqlthree) === TRUE) {
         echo "Records deleted successfully and proper SC_allocated!";
@@ -110,16 +103,14 @@ function allocatedOpenTable($conn)
 function createAllocatedNTCTable($conn)
 {
     // query1/3
-    $sql_cat1 = "CREATE TABLE allocatedNTC AS 
-        SELECT * FROM unallocatedcommon";
-    if ($conn->query($sql_cat1) === TRUE) {
+    $sqlone = "CREATE TABLE allocatedNTC AS SELECT * FROM unallocatedcommon";
+    if ($conn->query($sqlone) === TRUE) {
         echo "1540New NTC allocated table created successfully!";
     } else {
         echo "Error: " . $conn->error;
     }
     // query 2/3
-    $sql_fish4 = "DELETE FROM allocatedNTC
-        WHERE category <> 'NTC'";
+    $sql_fish4 = "DELETE FROM allocatedNTC WHERE category <> 'NTC'";
     if ($conn->query($sql_fish4) === TRUE) {
         echo " all NTC table , successfully!";
     } else {
@@ -187,13 +178,3 @@ function createAllocatedOBCTable($conn)
         echo "Error: " . $conn->error;
     }
 }
-
-// // Handle ST two buttons
-// if (isset($_POST['st1'])) {
-    
-// }
-
-// if (isset($_POST['st2'])) {
-//     // SQL query to delete all rows except the top 3
-    
-// // }
