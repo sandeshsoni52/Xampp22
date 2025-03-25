@@ -87,7 +87,6 @@ function createAllocatedNTCTable($conn)
 // Handle OBC button
 function createAllocatedOBCTable($conn)
 {
-    // if (isset($_POST['obc1'])) {
     // query1/3
     $sqlone = "CREATE TABLE allocatedOBC AS 
         SELECT * FROM unallocatedcommon";
@@ -107,11 +106,10 @@ function createAllocatedOBCTable($conn)
     }
 
     // query 3/3
-    // $ect = 'thirty';
     global $ect;
     $result = $conn->query("SELECT $ect FROM calculation WHERE category='obc'");
     $row = $result->fetch_assoc();
-    $obc_value = isset($row[$ect]) ? (int)$row[$ect] : 0; // Ensure it's an integer
+    $obc_value = isset($row[$ect]) ? (int)$row[$ect] : 0;
 
 
     // SQL query to delete all rows except the top 4
