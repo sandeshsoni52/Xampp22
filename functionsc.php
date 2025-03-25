@@ -116,43 +116,28 @@ function allocatedOpenTable($conn)
     } else {
         echo "Error: " . $conn->error;
     }
-}
 
-// Handle OBC button
-function createAllocatedOBCTable($conn)
-{
-    // query1/3
-    $sqlone = "CREATE TABLE allocatedOBC AS 
-        SELECT * FROM unallocatedcommon";
+    // query1/3 OBC
+    $sqlone = "CREATE TABLE allocatedOBC AS SELECT * FROM unallocatedcommon";
     if ($conn->query($sqlone) === TRUE) {
-        echo "1130New obc allocated table created successfully!";
+        echo "1521New obc allocated table created successfully!";
     } else {
         echo "Error: " . $conn->error;
     }
-
     // query 2/3
-    $sqltwo = "DELETE FROM allocatedOBC
-        WHERE category <> 'OBC'";
+    $sqltwo = "DELETE FROM allocatedOBC WHERE category <> 'OBC'";
     if ($conn->query($sqltwo) === TRUE) {
         echo " all OBC table , successfully!";
     } else {
         echo "Error: " . $conn->error;
     }
-
     // query 3/3
     global $ect;
     $result = $conn->query("SELECT $ect FROM calculation WHERE category='obc'");
     $row = $result->fetch_assoc();
     $obc_value = isset($row[$ect]) ? (int)$row[$ect] : 0;
     // SQL query to delete all rows except the top 4
-    $sqlthree = "DELETE FROM allocatedOBC 
-                WHERE srno NOT IN (
-                    SELECT srno FROM (
-                        SELECT srno FROM allocatedOBC
-                        ORDER BY srno 
-                        LIMIT $obc_value
-                    ) AS temp
-                )";
+    $sqlthree = "DELETE FROM allocatedOBC WHERE srno NOT IN (SELECT srno FROM (SELECT srno FROM allocatedOBC ORDER BY srno LIMIT $obc_value) AS temp)";
     if ($conn->query($sqlthree) === TRUE) {
         echo "Records deleted successfully and proper OBC_allocated!";
     } else {
