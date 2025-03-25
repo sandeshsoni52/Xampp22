@@ -13,6 +13,26 @@ function allocatedOpenTable($conn)
     } else {
         echo "Error: " . $conn->error;
     }
+
+    //query 2
+    $sqlone = "CREATE TABLE unallocatedcommon AS 
+                SELECT * FROM meritlist;";
+
+    if ($conn->query($sqlone) === TRUE) {
+        echo "q2";
+    } else {
+        echo "Error: " . $conn->error;
+    }
+
+    //query 3
+    $sqlone = "DELETE FROM unallocatedcommon 
+WHERE srno IN (SELECT srno FROM allocatedopen); ";
+
+    if ($conn->query($sqlone) === TRUE) {
+        echo "q3";
+    } else {
+        echo "Error: " . $conn->error;
+    }
 }
 
 // Function to handle SC table creation
