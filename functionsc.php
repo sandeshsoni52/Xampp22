@@ -1,5 +1,4 @@
 <?php
-$ect = 'twoforty';
 
 //allocated_open_category_seats
 function allocatedOpenTable($conn)
