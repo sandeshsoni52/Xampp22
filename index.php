@@ -3,10 +3,17 @@ include 'db_connect.php';
 include 'functionsc.php';
 
 $ect = 'sixty';
+$cse = 'twoforty';
+$mech = 'sixty';
 
-// call all_allocation_process function
-if (isset($_POST['allocatedopen'])) {
+// call all_allocation_process function r1i1
+if (isset($_POST['Round1_i1'])) {
     allocatedOpenTable($conn);
+}
+
+// call all_allocation_process function r1i2
+if (isset($_POST['Round1_i2'])) {
+    r1i2($conn);
 }
 
 // Close connection
@@ -23,8 +30,8 @@ $conn->close();
 
 <body>
     <form method="post">
-        <button type="submit" name="allocatedopen">iteration-1 Round-1 (related to First-Preference)</button>
-        <button type="submit" name="Round1_i2">iteration-2 Round-1 (related to Second-Preference)</button>
+        <button type="submit" name="Round1_i1">iteration-1 of Round-1 (related to First-Preference)</button>
+        <button type="submit" name="Round1_i2">iteration-2 of Round-1 (related to Second-Preference)</button>
     </form>
 </body>
 

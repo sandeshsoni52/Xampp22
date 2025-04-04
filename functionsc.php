@@ -1,8 +1,9 @@
 <?php
 
-//allocated_open_category_seats
+//allocated round 1 i1
 function allocatedOpenTable($conn)
 {
+    //open_category allocated table creating
     //query 1
     global $ect;
     $result = $conn->query("SELECT $ect FROM calculation WHERE category='open'");
@@ -144,4 +145,41 @@ function allocatedOpenTable($conn)
     } else {
         echo "Error: " . $conn->error;
     }
+}
+
+//round 1 i2
+function r1i2($conn)
+{
+    // CREATE TABLE allocated_r1i1 AS
+    // SELECT Srno, rollno, cname, category FROM allocatedntc
+    // UNION ALL
+    // SELECT Srno, rollno, cname, category FROM allocatedst
+    // UNION ALL
+    // SELECT Srno, rollno, cname, category FROM allocatedsc
+    // UNION ALL
+    // SELECT Srno, rollno, cname, category FROM allocatedopen
+    // UNION ALL
+    // SELECT Srno, rollno, cname, category FROM allocatedobc;
+    
+
+    // CREATE TABLE unallocated_r1i1 AS
+    // SELECT * FROM meritlist;
+
+    // DELETE FROM unallocated_r1i1
+    // WHERE srno IN (SELECT srno FROM allocated_r1i1);
+
+    //OKK 1331
+
+    now change dept to mechanical for second preference
+
+    whole again (but use new list of unallocated_r1i1
+                and seat count will change according to DEPT)
+    open category allocated
+    all unallocated 
+    sc
+    st
+    ntc 
+    obc 
+
+
 }
