@@ -23,7 +23,8 @@ $conn->close();
 
 <body>
     <form method="post">
-        <button type="submit" name="allocatedopen">open allocated table okk</button>
+        <button type="submit" name="allocatedopen">iteration-1 Round-1 (related to First-Preference)</button>
+        <button type="submit" name="Round1_i2">iteration-2 Round-1 (related to Second-Preference)</button>
     </form>
 </body>
 
