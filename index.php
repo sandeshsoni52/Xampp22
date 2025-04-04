@@ -8,13 +8,13 @@ $mech = 'sixty';
 
 // call all_allocation_process function r1i1
 if (isset($_POST['Round1_i1'])) {
-    allocatedOpenTable($conn);
+    allocated_Ect_R1i1($conn);
     allocated_cse_r1i1($conn);
 }
 
 // call all_allocation_process function r1i2
 if (isset($_POST['Round1_i2'])) {
-    r1i2($conn);
+    r1i2_prepare($conn);
 }
 
 // Close connection

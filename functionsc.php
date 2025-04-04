@@ -1,7 +1,7 @@
 <?php
 
 //allocated round 1 i1 (dept => ect)
-function allocatedOpenTable($conn)
+function allocated_Ect_R1i1($conn)
 {
     //open_category allocated table creating
     //query 1
@@ -148,7 +148,7 @@ function allocatedOpenTable($conn)
 }
 
 //round 1 i2
-function r1i2($conn)
+function r1i2_prepare($conn)
 {
     // CREATE TABLE allocated_r1i1 AS
     // SELECT Srno, rollno, cname, category FROM allocatedntc
@@ -169,20 +169,20 @@ function r1i2($conn)
     // WHERE srno IN (SELECT srno FROM allocated_r1i1);
 
     //OKK 1331
+    meritlist will have new columns called "prefer1 " ," prefer2"
+    now change dept to mechanical for second preference
 
-    // now change dept to mechanical for second preference
 
+    how to change SEAT_COUNT(no need , we need separate meritlist_of_cse from meritlist)
 
-    // how to change SEAT_COUNT 
-
-    // whole again (but use new list of unallocated_r1i1
-    //             and seat count will change according to DEPT)
-    // open category allocated
-    // all unallocated 
-    // sc
-    // st
-    // ntc 
-    // obc 
+    whole again (but use new list of unallocated_r1i1
+                and seat count will change according to DEPT)
+    open category allocated
+    all unallocated 
+    sc
+    st
+    ntc 
+    obc 
 
 
 }
