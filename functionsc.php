@@ -150,6 +150,18 @@ function allocated_Ect_R1i1($conn)
 //round 1 i2
 function r1i2_prepare($conn)
 {
+    // CREATE TABLE csep1meritlist AS 
+    // SELECT * FROM i1meritlist;
+
+    // DELETE FROM csep1meritlist 
+    // WHERE prefer1 <> 'cse';
+
+    // CREATE TABLE mechp1meritlist AS 
+    // SELECT * FROM i1meritlist;
+
+    // DELETE FROM mechp1meritlist 
+    // WHERE prefer1 <> 'mech';
+
     // CREATE TABLE allocated_r1i1 AS
     // SELECT Srno, rollno, cname, category FROM allocatedntc
     // UNION ALL
@@ -163,26 +175,26 @@ function r1i2_prepare($conn)
     
 
     // CREATE TABLE unallocated_r1i1 AS
-    // SELECT * FROM meritlist;
+    // SELECT * FROM i1meritlist;
 
     // DELETE FROM unallocated_r1i1
     // WHERE srno IN (SELECT srno FROM allocated_r1i1);
 
     //OKK 1331
-    meritlist will have new columns called "prefer1 " ," prefer2"
-    now change dept to mechanical for second preference
+    // meritlist will have new columns called "prefer1 " ," prefer2"
+    // now change dept to mechanical for second preference
 
 
-    how to change SEAT_COUNT(no need , we need separate meritlist_of_cse from meritlist)
+    // how to change SEAT_COUNT(no need , we need separate meritlist_of_cse from meritlist)
 
-    whole again (but use new list of unallocated_r1i1
-                and seat count will change according to DEPT)
-    open category allocated
-    all unallocated 
-    sc
-    st
-    ntc 
-    obc 
+    // whole again (but use new list of unallocated_r1i1
+    //             and seat count will change according to DEPT)
+    // open category allocated
+    // all unallocated 
+    // sc
+    // st
+    // ntc 
+    // obc 
 
 
 }
